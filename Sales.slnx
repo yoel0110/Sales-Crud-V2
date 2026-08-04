@@ -5,4 +5,5 @@
     <Project Path="Sales.Domain/Sales.Domain.csproj" />
     <Project Path="Sales.Infrastructure/Sales.Infrastructure.csproj" Id="e74ada0f-6473-48a2-bebc-1a2815fea919" />
   </Folder>
+  <Folder Name="/src/Sales.Web/" />
 </Solution>
