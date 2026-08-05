@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace Sales.E2etest;
 
@@ -17,23 +18,41 @@ public class ProductUpdateE2ETest : TestBase
         LoginHelper.Login(_driver);
     }
 
+    private void LoadProducts()
+    {
+        var filterSelect = new SelectElement(_driver.FindElement(By.Id("filter")));
+        filterSelect.SelectByValue("1");
+        var priceInput = _driver.FindElement(By.Id("price"));
+        priceInput.Clear();
+        priceInput.SendKeys("0");
+        var submitButton = _driver.FindElement(By.CssSelector(".filters button[type='submit']"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", submitButton);
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+    }
+
+    private void SubmitForm()
+    {
+        var addButton = _driver.FindElement(By.Id("add"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addButton);
+    }
+
     [Test]
     [Category("Camino feliz")]
     public void Update_Success_ChangePrice()
     {
-        Test.Info("Esperando lista de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        Test.Info("Cargando productos");
+        LoadProducts();
 
         Test.Info("Seleccionando primer producto para editar");
         var editButton = _driver.FindElement(By.CssSelector("button[id^='edit-product-']"));
         editButton.Click();
-        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
 
         Test.Info("Actualizando precio del producto");
         var priceInput = _driver.FindElement(By.Id("price"));
         priceInput.Clear();
         priceInput.SendKeys("999.99");
-        _driver.FindElement(By.Id("add")).Click();
+        SubmitForm();
 
         Test.Info("Verificando mensaje de exito");
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
@@ -46,18 +65,18 @@ public class ProductUpdateE2ETest : TestBase
     [Category("Prueba negativa")]
     public void Update_Failure_ClearName()
     {
-        Test.Info("Esperando lista de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        Test.Info("Cargando productos");
+        LoadProducts();
 
         Test.Info("Seleccionando primer producto para editar");
         var editButton = _driver.FindElement(By.CssSelector("button[id^='edit-product-']"));
         editButton.Click();
-        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
 
         Test.Info("Borrando nombre del producto");
         var nameInput = _driver.FindElement(By.Id("productName"));
         nameInput.Clear();
-        _driver.FindElement(By.Id("add")).Click();
+        SubmitForm();
 
         Test.Info("Verificando que el formulario no se envio");
         var form = _driver.FindElement(By.CssSelector(".product-form"));
@@ -69,19 +88,19 @@ public class ProductUpdateE2ETest : TestBase
     [Category("Prueba de limites")]
     public void Update_Boundary_MaxPrice()
     {
-        Test.Info("Esperando lista de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        Test.Info("Cargando productos");
+        LoadProducts();
 
         Test.Info("Seleccionando primer producto para editar");
         var editButton = _driver.FindElement(By.CssSelector("button[id^='edit-product-']"));
         editButton.Click();
-        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
 
         Test.Info("Actualizando con precio maximo");
         var priceInput = _driver.FindElement(By.Id("price"));
         priceInput.Clear();
         priceInput.SendKeys("999999.99");
-        _driver.FindElement(By.Id("add")).Click();
+        SubmitForm();
 
         Test.Info("Verificando mensaje de respuesta");
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
