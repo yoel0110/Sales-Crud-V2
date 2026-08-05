@@ -52,4 +52,23 @@ public class ProductFilterE2ETest : TestBase
         Assert.That(table.Displayed, Is.True);
         Test.Pass("Filtro de precio negativo manejado");
     }
+
+    [Test]
+    [Category("Prueba de limites")]
+    public void Filter_Boundary_ZeroResults()
+    {
+        Test.Info("Esperando carga de productos");
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Filtrando con precio extremo sin resultados");
+        var priceInput = _driver.FindElement(By.Id("price"));
+        priceInput.Clear();
+        priceInput.SendKeys("999999");
+        _driver.FindElement(By.CssSelector(".filters button[type='submit']")).Click();
+
+        Test.Info("Verificando que se muestra lista vacia");
+        var empty = _driver.FindElement(By.CssSelector(".empty"));
+        Assert.That(empty.Text, Does.Contain("No se encontraron"));
+        Test.Pass("Filtro sin resultados manejado");
+    }
 }
