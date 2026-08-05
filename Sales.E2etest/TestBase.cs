@@ -24,9 +24,13 @@ public abstract class TestBase
 
         try
         {
-            var screenshot = TakeScreenshot();
+            var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
+            var base64 = screenshot.AsBase64EncodedString;
+            var path = SaveScreenshotToDisk(screenshot);
 
-            Test.AddScreenCaptureFromPath(screenshot);
+            Test.AddScreenCaptureFromBase64String(base64);
+
+            Console.WriteLine($"Screenshot saved: {path}");
         }
         catch (Exception ex)
         {
@@ -53,7 +57,7 @@ public abstract class TestBase
         Driver.Dispose();
     }
 
-    private string TakeScreenshot()
+    private string SaveScreenshotToDisk(Screenshot screenshot)
     {
         var screenshotsDirectory = Path.Combine(
             Directory.GetCurrentDirectory(),
@@ -65,20 +69,12 @@ public abstract class TestBase
         var fileName =
             $"{TestContext.CurrentContext.Test.Name}_{DateTime.Now:yyyyMMdd_HHmmss}.png";
 
-        var absolutePath = Path.Combine(
+        var path = Path.Combine(
             screenshotsDirectory,
             fileName);
 
-        var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
+        screenshot.SaveAsFile(path);
 
-        screenshot.SaveAsFile(absolutePath);
-
-        var relativePath = Path.Combine(
-            "Screenshots",
-            fileName);
-
-        Console.WriteLine($"Screenshot saved: {absolutePath}");
-
-        return relativePath;
+        return path;
     }
 }
