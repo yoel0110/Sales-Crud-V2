@@ -21,10 +21,10 @@ export const ResponseModal: React.FC<ResponseModalProps> = ({
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
       <div className={`modal-content modal-${isSuccess ? 'success' : 'error'}`} onClick={(e) => e.stopPropagation()}>
         <div className="modal-icon">{isSuccess ? '✓' : '✕'}</div>
-        <h2>{isSuccess ? '¡Éxito!' : 'Error'}</h2>
-        <p>{message}</p>
+        <h2 id="response-modal-title">{isSuccess ? '¡Éxito!' : 'Error'}</h2>
+        <p id="response-modal-message">{message}</p>
         <div className="modal-actions">
-          <button type="button" className="btn-primary" onClick={onClose}>
+          <button type="button" id="response-modal-close" className="btn-primary" onClick={onClose}>
             Aceptar
           </button>
         </div>

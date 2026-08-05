@@ -319,6 +319,42 @@ body {
   line-height: 1.5;
 }
 
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.login-form {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form h2 {
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+#logged-user {
+  font-weight: 500;
+  color: #374151;
+}
+
 @media (max-width: 768px) {
   .filters form {
     flex-direction: column;

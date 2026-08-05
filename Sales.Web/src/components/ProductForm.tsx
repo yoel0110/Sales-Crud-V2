@@ -122,7 +122,7 @@ export const ProductForm = ({
         <div className="form-group">
           <label htmlFor="price">Precio</label>
           <input
-            id="nprice"
+            id="price"
             name="price"
             type="number"
             step="0.01"
