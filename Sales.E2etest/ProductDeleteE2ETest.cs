@@ -38,4 +38,25 @@ public class ProductDeleteE2ETest : TestBase
         Assert.That(message.ToLowerInvariant(), Does.Contain("eliminado"));
         Test.Pass("Producto eliminado exitosamente");
     }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Delete_Failure_Cancel()
+    {
+        Test.Info("Esperando lista de productos");
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Seleccionando primer producto para eliminar");
+        var deleteButton = _driver.FindElement(By.CssSelector("button[id^='delete-product-']"));
+        deleteButton.Click();
+
+        Test.Info("Cancelando eliminacion");
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("confirm-cancel"), TimeSpan.FromSeconds(3));
+        _driver.FindElement(By.Id("confirm-cancel")).Click();
+
+        Test.Info("Verificando que la lista sigue visible");
+        var table = _driver.FindElement(By.CssSelector(".product-table"));
+        Assert.That(table.Displayed, Is.True);
+        Test.Pass("Eliminacion cancelada correctamente");
+    }
 }
