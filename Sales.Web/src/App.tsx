@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { ProductForm } from './components/ProductForm'
 import { ProductList } from './components/ProductList'
+import { ResponseModal } from './components/ResponseModal'
+import { ConfirmModal } from './components/ConfirmModal'
 import { Filter, type ProductDto, type ProductFilters, type ProductFormData } from './types'
 import { createProduct, deleteProduct, getProducts, updateProduct } from './services/productService'
 import { CATEGORIES } from './data/categories'
@@ -9,26 +11,49 @@ import './App.css'
 function App() {
   const [products, setProducts] = useState<ProductDto[]>([])
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const [editingProduct, setEditingProduct] = useState<ProductDto | null>(null)
   const [showForm, setShowForm] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [modal, setModal] = useState({ isOpen: false, isSuccess: false, message: '' })
+  const [confirmDelete, setConfirmDelete] = useState<{ isOpen: boolean; productId: number | null }>({
+    isOpen: false,
+    productId: null,
+  })
+
+  const formatErrorMessage = (err: unknown): string => {
+    const message = err instanceof Error ? err.message : 'Error desconocido'
+    if (message === 'Failed to fetch') {
+      return 'No se pudo conectar con el servidor. Intentalo más tarde.'
+    }
+    return message
+  }
   const [filters, setFilters] = useState<ProductFilters>({
     filter: Filter.LESS_THAN,
-    price: 100,
+    price: 0,
     minPrice: 0,
     maxPrice: 1000,
     length: 10,
     category: 'Toys',
   })
 
+  const openModal = (isSuccess: boolean, message: string) => {
+    setModal({ isOpen: true, isSuccess, message })
+  }
+
+  const closeModal = () => {
+    setModal((prev) => ({ ...prev, isOpen: false }))
+  }
+
   const loadProducts = useCallback(async () => {
     setLoading(true)
-    setError(null)
     try {
-      const data = await getProducts(filters)
-      setProducts(data)
+      const result = await getProducts(filters)
+      if (!result.isSuccess) {
+        openModal(false, result.message)
+      }
+      setProducts(result.data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido')
+      openModal(false, formatErrorMessage(err))
     } finally {
       setLoading(false)
     }
@@ -52,17 +77,28 @@ function App() {
   }
 
   const handleSave = async (formData: ProductFormData) => {
+    setIsProcessing(true)
     try {
-      if (editingProduct) {
-        await updateProduct(formData)
-      } else {
-        await createProduct(formData)
+      const result = editingProduct
+        ? await updateProduct(formData)
+        : await createProduct(formData)
+
+      if (!result.isSuccess) {
+        openModal(false, result.message)
+        return
       }
+
+      openModal(
+        true,
+        result.message || (editingProduct ? 'Producto actualizado correctamente' : 'Producto creado correctamente'),
+      )
       setShowForm(false)
       setEditingProduct(null)
       loadProducts()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido')
+      openModal(false, formatErrorMessage(err))
+    } finally {
+      setIsProcessing(false)
     }
   }
 
@@ -71,16 +107,33 @@ function App() {
     setShowForm(true)
   }
 
-  const handleDelete = async (id: number) => {
-    if (!window.confirm('¿Eliminar este producto?')) {
+  const handleDelete = (id: number) => {
+    setConfirmDelete({ isOpen: true, productId: id })
+  }
+
+  const handleConfirmDelete = async () => {
+    if (confirmDelete.productId === null) {
       return
     }
+    setIsProcessing(true)
     try {
-      await deleteProduct(id)
+      const result = await deleteProduct(confirmDelete.productId)
+      if (!result.isSuccess) {
+        openModal(false, result.message)
+        return
+      }
+      openModal(true, result.message || 'Producto eliminado correctamente')
       loadProducts()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido')
+      openModal(false, formatErrorMessage(err))
+    } finally {
+      setIsProcessing(false)
+      setConfirmDelete({ isOpen: false, productId: null })
     }
+  }
+
+  const handleCancelDelete = () => {
+    setConfirmDelete({ isOpen: false, productId: null })
   }
 
   const handleNew = () => {
@@ -101,13 +154,6 @@ function App() {
       </header>
 
       <main className="app-main">
-        {error && (
-          <div className="alert error">
-            <span>{error}</span>
-            <button type="button" onClick={() => setError(null)}>×</button>
-          </div>
-        )}
-
         <section className="filters">
           <form onSubmit={handleSearch}>
             <div className="filter-group">
@@ -115,25 +161,25 @@ function App() {
               <select id="filter" name="filter" value={filters.filter} onChange={handleFilterChange}>
                 <option value={Filter.LESS_THAN}>Menor que</option>
                 <option value={Filter.MORE_THAN}>Mayor que</option>
-                <option value={Filter.BETWEN}>Entre</option>
+                <option value={Filter.BETWEEN}>Entre</option>
               </select>
             </div>
 
-            {filters.filter === Filter.BETWEN ? (
+            {filters.filter === Filter.BETWEEN ? (
               <>
                 <div className="filter-group">
                   <label htmlFor="minPrice">Precio mín</label>
-                  <input id="minPrice" name="minPrice" type="number" step="0.01" value={filters.minPrice} onChange={handleFilterChange} />
+                  <input id="minPrice" name="minPrice" type="number" value={filters.minPrice} onChange={handleFilterChange} />
                 </div>
                 <div className="filter-group">
                   <label htmlFor="maxPrice">Precio máx</label>
-                  <input id="maxPrice" name="maxPrice" type="number" step="0.01" value={filters.maxPrice} onChange={handleFilterChange} />
+                  <input id="maxPrice" name="maxPrice" type="number" value={filters.maxPrice} onChange={handleFilterChange} />
                 </div>
               </>
             ) : (
               <div className="filter-group">
                 <label htmlFor="price">Precio</label>
-                <input id="price" name="price" type="number" step="0.01" value={filters.price} onChange={handleFilterChange} />
+                <input id="price" name="price" type="number" value={filters.price} onChange={handleFilterChange} />
               </div>
             )}
 
@@ -158,13 +204,18 @@ function App() {
         </section>
 
         <section className="actions">
-          <button type="button" className="btn-primary" onClick={handleNew}>Nuevo producto</button>
+          <button type="button" id='new-product' className="btn-primary" onClick={handleNew}>Nuevo producto</button>
         </section>
 
         {showForm && (
-          <div className="modal-overlay" onClick={handleCancel}>
+          <div className="modal-overlay" onClick={isProcessing ? undefined : handleCancel}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <ProductForm product={editingProduct} onSave={handleSave} onCancel={handleCancel} />
+              <ProductForm
+                product={editingProduct}
+                onSave={handleSave}
+                onCancel={handleCancel}
+                isProcessing={isProcessing}
+              />
             </div>
           </div>
         )}
@@ -173,10 +224,30 @@ function App() {
           {loading ? (
             <p className="loading">Cargando...</p>
           ) : (
-            <ProductList products={products} onEdit={handleEdit} onDelete={handleDelete} />
+            <ProductList products={products} onEdit={handleEdit} onDelete={handleDelete} isProcessing={isProcessing} />
           )}
         </section>
       </main>
+
+      <ResponseModal
+        isOpen={modal.isOpen}
+        isSuccess={modal.isSuccess}
+        message={modal.message}
+        onClose={closeModal}
+      />
+
+      <ConfirmModal
+        isOpen={confirmDelete.isOpen}
+        title="Confirmar eliminación"
+        message={
+          confirmDelete.productId !== null
+            ? `¿Está seguro de eliminar "${products.find((p) => p.productId === confirmDelete.productId)?.productName ?? 'este producto'}"? Esta acción no se puede deshacer.`
+            : '¿Está seguro de eliminar este producto? Esta acción no se puede deshacer.'
+        }
+        confirmText="Eliminar"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </div>
   )
 }

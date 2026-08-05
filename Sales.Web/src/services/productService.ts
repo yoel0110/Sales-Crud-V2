@@ -3,6 +3,7 @@ import type {
   ProductDto,
   ProductFilters,
   ProductFormData,
+  ServiceResult,
 } from '../types';
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5138').replace(/\/$/, '');
@@ -17,9 +18,18 @@ const buildQueryString = (params: Record<string, string | number>) => {
   return searchParams.toString();
 };
 
+const parseBackendError = async (response: Response): Promise<string> => {
+  try {
+    const result: ApiResponse<unknown> = await response.json();
+    return result.message || response.statusText;
+  } catch {
+    return response.statusText;
+  }
+};
+
 export const getProducts = async (
   filters: ProductFilters,
-): Promise<ProductDto[]> => {
+): Promise<ServiceResult<ProductDto[]>> => {
   const query = buildQueryString({
     filter: filters.filter,
     minPrice: filters.minPrice,
@@ -31,16 +41,17 @@ export const getProducts = async (
 
   const response = await fetch(`${API_BASE_URL}/api/v1/product/all?${query}`);
   if (!response.ok) {
-    throw new Error(`Error fetching products: ${response.statusText}`);
+    const message = await parseBackendError(response);
+    return { isSuccess: false, message, data: [] };
   }
 
   const result: ApiResponse<ProductDto[]> = await response.json();
-  return result.data;
+  return { isSuccess: result.isSuccess, message: result.message, data: result.data };
 };
 
 export const createProduct = async (
   product: ProductFormData,
-): Promise<string> => {
+): Promise<ServiceResult<string>> => {
   const response = await fetch(`${API_BASE_URL}/api/v1/product/create`, {
     method: 'POST',
     headers: {
@@ -59,16 +70,17 @@ export const createProduct = async (
   });
 
   if (!response.ok) {
-    throw new Error(`Error creating product: ${response.statusText}`);
+    const message = await parseBackendError(response);
+    return { isSuccess: false, message, data: '' };
   }
 
   const result: ApiResponse<string> = await response.json();
-  return result.data;
+  return { isSuccess: result.isSuccess, message: result.message, data: result.data };
 };
 
 export const updateProduct = async (
   product: ProductFormData,
-): Promise<ProductDto> => {
+): Promise<ServiceResult<ProductDto>> => {
   const response = await fetch(`${API_BASE_URL}/api/v1/product/update`, {
     method: 'PUT',
     headers: {
@@ -87,14 +99,15 @@ export const updateProduct = async (
   });
 
   if (!response.ok) {
-    throw new Error(`Error updating product: ${response.statusText}`);
+    const message = await parseBackendError(response);
+    return { isSuccess: false, message, data: {} as ProductDto };
   }
 
   const result: ApiResponse<ProductDto> = await response.json();
-  return result.data;
+  return { isSuccess: result.isSuccess, message: result.message, data: result.data };
 };
 
-export const deleteProduct = async (id: number): Promise<ProductDto> => {
+export const deleteProduct = async (id: number): Promise<ServiceResult<ProductDto>> => {
   const response = await fetch(
     `${API_BASE_URL}/api/v1/product/removeby?id=${id}`,
     {
@@ -103,9 +116,10 @@ export const deleteProduct = async (id: number): Promise<ProductDto> => {
   );
 
   if (!response.ok) {
-    throw new Error(`Error deleting product: ${response.statusText}`);
+    const message = await parseBackendError(response);
+    return { isSuccess: false, message, data: {} as ProductDto };
   }
 
   const result: ApiResponse<ProductDto> = await response.json();
-  return result.data;
+  return { isSuccess: result.isSuccess, message: result.message, data: result.data };
 };
