@@ -61,4 +61,23 @@ public class LoginE2ETest : TestBase
         Assert.That(errorMessage.ToLowerInvariant(), Does.Contain("incorrectos"));
         Test.Pass("Login invalido rechazado correctamente");
     }
+
+    [Test]
+    [Category("Prueba de limites")]
+    public void Login_Boundary_EmptyCredentials()
+    {
+        Test.Info("Navegando a la aplicacion");
+        _driver.Navigate().GoToUrl("http://localhost:5173");
+
+        Test.Info("Esperando formulario de login");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("username"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Intentando iniciar sesion con campos vacios");
+        _driver.FindElement(By.Id("login-button")).Click();
+
+        Test.Info("Verificando que permanece en el formulario de login");
+        var loginButton = _driver.FindElement(By.Id("login-button"));
+        Assert.That(loginButton.Displayed, Is.True);
+        Test.Pass("Campos vacios mantienen al usuario en login");
+    }
 }
