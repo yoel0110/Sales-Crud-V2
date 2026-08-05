@@ -68,8 +68,7 @@ public abstract class TestBase
     private string SaveScreenshotToDisk(Screenshot screenshot)
     {
         var screenshotsDirectory = Path.Combine(
-            Directory.GetCurrentDirectory(),
-            "Reports",
+            ReportPathHelper.GetReportsDirectory(),
             "Screenshots");
 
         Directory.CreateDirectory(screenshotsDirectory);

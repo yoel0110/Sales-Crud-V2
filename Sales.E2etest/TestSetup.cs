@@ -12,11 +12,7 @@ public class TestSetup
     [OneTimeSetUp]
     public void GlobalSetup()
     {
-        var reportsDirectory = Path.Combine(
-            Directory.GetCurrentDirectory(),
-            "Reports");
-
-        Directory.CreateDirectory(reportsDirectory);
+        var reportsDirectory = ReportPathHelper.GetReportsDirectory();
 
         var reportPath = Path.Combine(
             reportsDirectory,
