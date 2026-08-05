@@ -40,4 +40,23 @@ public class ProductCreateE2ETest : TestBase
         Assert.That(message.ToLowerInvariant(), Does.Contain("creado"));
         Test.Pass("Producto creado exitosamente");
     }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Create_Failure_EmptyName()
+    {
+        Test.Info("Abriendo formulario de nuevo producto");
+        _driver.FindElement(By.Id("new-product")).Click();
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+
+        Test.Info("Enviando formulario sin nombre");
+        _driver.FindElement(By.Id("price")).SendKeys("10");
+        _driver.FindElement(By.Id("stock")).SendKeys("5");
+        _driver.FindElement(By.Id("add")).Click();
+
+        Test.Info("Verificando que el formulario sigue visible");
+        var formButton = _driver.FindElement(By.Id("add"));
+        Assert.That(formButton.Displayed, Is.True);
+        Test.Pass("Formulario rechazo nombre vacio");
+    }
 }
