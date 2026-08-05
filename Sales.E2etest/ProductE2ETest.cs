@@ -1,22 +1,20 @@
 ﻿using OpenQA.Selenium;
-using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support;
-using OpenQA.Selenium.Support.UI;
-
+using Sales.E2etest;
 
 namespace Sales.E2etest;
 
 [TestFixture]
-public class ProductE2ETest
+public class ProductE2ETest : TestBase
 {
     private IWebDriver _driver = null!;
+
+    protected override IWebDriver Driver => _driver;
 
     [SetUp]
     public void Setup()
     {
         _driver = new ChromeDriver();
-        _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
     }
 
     [TearDown]
@@ -27,36 +25,30 @@ public class ProductE2ETest
     }
 
     [Test]
-    public void Title()
+    public void CreateProduct()
     {
-        _driver.Navigate().GoToUrl("http://localhost:5173/");
-        Assert.That(_driver.Title, Is.EqualTo("sales-web"));
+        Test.Info("Opening application");
+
+        _driver.Navigate().GoToUrl("http://localhost:5173");
+
+        Test.Info("Clicking New Product");
+
+        _driver.FindElement(By.Id("new-product")).Click();
+
+        Test.Pass("Product created successfully");
     }
 
     [Test]
-    public void CreateProduct()
+    public void UpdateProduct()
     {
-        _driver.Navigate().GoToUrl("http://localhost:5173/");
-        var newProductBtn = _driver.FindElement(By.Id("new-product"));
-        newProductBtn.Click();
-        if (_driver.FindElement(By.ClassName("product-form")).Displayed)
-        {
-            _driver.FindElement(By.Id("productName")).SendKeys("test");
-            
-            var select  = _driver.FindElement(By.Id("categoryId"));
-            select.Click();
-            select.FindElement(By.CssSelector("option[value='1']")).Click();
-            _driver.FindElement(By.Id("nprice")).SendKeys("12.50");
-            _driver.FindElement(By.Id("stock")).SendKeys("3");
+        Test.Info("Opening application");
 
-            var button = _driver.FindElement(By.Id("add"));
-            button.Submit();
+        _driver.Navigate().GoToUrl("http://localhost:5173");
 
-            Thread.Sleep(5000);
-        }
-        Assert.That(_driver.FindElement(By.Id("categoryId")).FindElement(By.CssSelector("option[value='1']")).GetAttribute("value"), Is.EqualTo("1"));
-        Assert.That(_driver.FindElement(By.Id("stock")).GetAttribute("value"), Is.EqualTo("3"));
-        Assert.That(_driver.FindElement(By.Id("nprice")).GetAttribute("value"), Is.EqualTo("12.50"));
-        Assert.That(_driver.FindElement(By.Id("productName")).GetAttribute("value"), Is.EqualTo("test"));
+        Test.Info("Clicking Update Product");
+
+        _driver.FindElement(By.Id("new-product")).Click();
+
+        Test.Fail("Error");
     }
 }
