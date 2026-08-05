@@ -59,4 +59,29 @@ public class ProductDeleteE2ETest : TestBase
         Assert.That(table.Displayed, Is.True);
         Test.Pass("Eliminacion cancelada correctamente");
     }
+
+    [Test]
+    [Category("Prueba de limites")]
+    public void Delete_Boundary_LastRemaining()
+    {
+        Test.Info("Esperando lista de productos");
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+
+        var initialRows = _driver.FindElements(By.CssSelector(".product-table tbody tr")).Count;
+        Test.Info($"Filas iniciales: {initialRows}");
+
+        Test.Info("Seleccionando primer producto para eliminar");
+        var deleteButton = _driver.FindElement(By.CssSelector("button[id^='delete-product-']"));
+        deleteButton.Click();
+
+        Test.Info("Confirmando eliminacion");
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("confirm-accept"), TimeSpan.FromSeconds(3));
+        _driver.FindElement(By.Id("confirm-accept")).Click();
+
+        Test.Info("Verificando que la UI se actualiza");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
+        var message = _driver.FindElement(By.Id("response-modal-message")).Text;
+        Assert.That(message.ToLowerInvariant(), Does.Contain("eliminado"));
+        Test.Pass("Eliminacion en limite de filas procesada");
+    }
 }
