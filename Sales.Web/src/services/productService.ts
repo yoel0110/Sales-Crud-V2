@@ -39,7 +39,9 @@ export const getProducts = async (
     category: filters.category,
   });
 
-  const response = await fetch(`${API_BASE_URL}/api/v1/product/all?${query}`);
+  const response = await fetch(`${API_BASE_URL}/api/v1/product/all?${query}`, {
+    credentials: 'include',
+  });
   if (!response.ok) {
     const message = await parseBackendError(response);
     return { isSuccess: false, message, data: [] };
@@ -57,6 +59,7 @@ export const createProduct = async (
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({
       productId: product.productId,
       productName: product.productName,
@@ -86,6 +89,7 @@ export const updateProduct = async (
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({
       productId: product.productId,
       productName: product.productName,
@@ -112,6 +116,7 @@ export const deleteProduct = async (id: number): Promise<ServiceResult<ProductDt
     `${API_BASE_URL}/api/v1/product/removeby?id=${id}`,
     {
       method: 'DELETE',
+      credentials: 'include',
     },
   );
 

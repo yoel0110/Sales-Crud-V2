@@ -49,3 +49,14 @@ export interface ProductFormData {
   price: number | "";
   stock: number | "";
 }
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  isSuccess: boolean;
+  message: string;
+  username: string | null;
+}

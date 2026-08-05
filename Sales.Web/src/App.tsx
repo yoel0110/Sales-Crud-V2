@@ -3,8 +3,10 @@ import { ProductForm } from './components/ProductForm'
 import { ProductList } from './components/ProductList'
 import { ResponseModal } from './components/ResponseModal'
 import { ConfirmModal } from './components/ConfirmModal'
+import { Login } from './components/Login'
 import { Filter, type ProductDto, type ProductFilters, type ProductFormData } from './types'
 import { createProduct, deleteProduct, getProducts, updateProduct } from './services/productService'
+import { checkAuth, logout } from './services/authService'
 import { CATEGORIES } from './data/categories'
 import './App.css'
 
@@ -19,6 +21,9 @@ function App() {
     isOpen: false,
     productId: null,
   })
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [checkingAuth, setCheckingAuth] = useState(true)
+  const [username, setUsername] = useState('')
 
   const formatErrorMessage = (err: unknown): string => {
     const message = err instanceof Error ? err.message : 'Error desconocido'
@@ -60,8 +65,30 @@ function App() {
   }, [filters])
 
   useEffect(() => {
-    loadProducts()
-  }, [loadProducts])
+    const verifyAuth = async () => {
+      try {
+        const result = await checkAuth()
+        if (result.isSuccess) {
+          setIsAuthenticated(true)
+          setUsername(result.data)
+        } else {
+          setIsAuthenticated(false)
+        }
+      } catch {
+        setIsAuthenticated(false)
+      } finally {
+        setCheckingAuth(false)
+      }
+    }
+
+    verifyAuth()
+  }, [])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadProducts()
+    }
+  }, [isAuthenticated, loadProducts])
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -146,11 +173,67 @@ function App() {
     setEditingProduct(null)
   }
 
+  const handleLogin = (loggedUser: string) => {
+    setIsAuthenticated(true)
+    setUsername(loggedUser)
+  }
+
+  const handleLoginError = (message: string) => {
+    openModal(false, message)
+  }
+
+  const handleLogout = async () => {
+    try {
+      await logout()
+    } catch {
+      // ignore
+    } finally {
+      setIsAuthenticated(false)
+      setUsername('')
+    }
+  }
+
+  if (checkingAuth) {
+    return (
+      <div className="app">
+        <main className="app-main">
+          <p className="loading">Verificando sesión...</p>
+        </main>
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="app">
+        <header className="app-header">
+          <h1>Sales CRUD</h1>
+          <p>Inicio de sesión</p>
+        </header>
+        <main className="app-main">
+          <Login onLogin={handleLogin} onError={handleLoginError} />
+        </main>
+        <ResponseModal
+          isOpen={modal.isOpen}
+          isSuccess={modal.isSuccess}
+          message={modal.message}
+          onClose={closeModal}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className="app">
       <header className="app-header">
         <h1>Sales CRUD</h1>
         <p>Productos</p>
+        <div className="user-info">
+          <span id="logged-user">{username}</span>
+          <button type="button" id="logout-button" className="btn-secondary" onClick={handleLogout}>
+            Cerrar sesión
+          </button>
+        </div>
       </header>
 
       <main className="app-main">
@@ -204,7 +287,7 @@ function App() {
         </section>
 
         <section className="actions">
-          <button type="button" id='new-product' className="btn-primary" onClick={handleNew}>Nuevo producto</button>
+          <button type="button" id="new-product" className="btn-primary" onClick={handleNew}>Nuevo producto</button>
         </section>
 
         {showForm && (

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sales.Api.utils;
 using Sales.Application.Dtos;
 using Sales.Application.Interfaces;
@@ -7,6 +8,7 @@ using Sales.Application.Types;
 namespace Sales.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/v1/product")]
     public class ProductController: ControllerBase
     {

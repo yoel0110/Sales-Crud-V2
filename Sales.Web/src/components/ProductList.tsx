@@ -36,6 +36,7 @@ export const ProductList = ({ products, onEdit, onDelete, isProcessing = false }
               <div className="row-actions">
                 <button
                   type="button"
+                  id={`edit-product-${product.productId}`}
                   className="btn-edit"
                   onClick={() => onEdit(product)}
                   disabled={isProcessing}
@@ -44,6 +45,7 @@ export const ProductList = ({ products, onEdit, onDelete, isProcessing = false }
                 </button>
                 <button
                   type="button"
+                  id={`delete-product-${product.productId}`}
                   className="btn-delete"
                   onClick={() => onDelete(product.productId)}
                   disabled={isProcessing}
