@@ -42,4 +42,24 @@ public class ProductReadE2ETest : TestBase
         Assert.That(body.ToLowerInvariant(), Does.Contain("401").Or.Contains("unauthorized"));
         Test.Pass("Acceso no autorizado a la API correctamente bloqueado");
     }
+
+    [Test]
+    [Category("Prueba de limites")]
+    public void Read_Boundary_LargeLength()
+    {
+        Test.Info("Esperando carga de productos");
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Solicitando cantidad limite de productos");
+        _driver.FindElement(By.Id("length")).Clear();
+        _driver.FindElement(By.Id("length")).SendKeys("1000");
+        _driver.FindElement(By.CssSelector(".filters button[type='submit']")).Click();
+
+        Thread.Sleep(500);
+
+        Test.Info("Verificando que la tabla se muestra sin errores");
+        var table = _driver.FindElement(By.CssSelector(".product-table"));
+        Assert.That(table.Displayed, Is.True);
+        Test.Pass("Cantidad limite procesada correctamente");
+    }
 }
