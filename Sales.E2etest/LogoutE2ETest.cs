@@ -33,4 +33,20 @@ public class LogoutE2ETest : TestBase
         Assert.That(loginButton.Displayed, Is.True);
         Test.Pass("Cierre de sesion exitoso");
     }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Logout_Failure_AccessWithoutSession()
+    {
+        Test.Info("Navegando a la aplicacion sin sesion");
+        _driver.Navigate().GoToUrl("http://localhost:5173");
+
+        Test.Info("Esperando formulario de login");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("login-button"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Verificando que no se muestra el sistema");
+        var loginButton = _driver.FindElement(By.Id("login-button"));
+        Assert.That(loginButton.Displayed, Is.True);
+        Test.Pass("Acceso sin sesion correctamente bloqueado");
+    }
 }
