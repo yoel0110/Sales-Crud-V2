@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace Sales.E2etest;
 
@@ -28,10 +29,12 @@ public class ProductCreateE2ETest : TestBase
         var productName = $"Producto E2E {DateTime.Now:yyyyMMddHHmmss}";
         Test.Info($"Creando producto: {productName}");
         _driver.FindElement(By.Id("productName")).SendKeys(productName);
-        _driver.FindElement(By.Id("categoryId")).SendKeys("Toys");
+        var categorySelect = new SelectElement(_driver.FindElement(By.Id("categoryId")));
+        categorySelect.SelectByText("Toys");
         _driver.FindElement(By.Id("price")).SendKeys("99.99");
         _driver.FindElement(By.Id("stock")).SendKeys("50");
-        _driver.FindElement(By.Id("add")).Click();
+        var addButton = _driver.FindElement(By.Id("add"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addButton);
 
         Test.Info("Verificando mensaje de exito");
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
@@ -71,10 +74,12 @@ public class ProductCreateE2ETest : TestBase
         var productName = $"Producto Negativo {DateTime.Now:yyyyMMddHHmmss}";
         Test.Info("Creando producto con precio negativo");
         _driver.FindElement(By.Id("productName")).SendKeys(productName);
-        _driver.FindElement(By.Id("categoryId")).SendKeys("Books");
+        var categorySelect = new SelectElement(_driver.FindElement(By.Id("categoryId")));
+        categorySelect.SelectByText("Books");
         _driver.FindElement(By.Id("price")).SendKeys("-10");
         _driver.FindElement(By.Id("stock")).SendKeys("5");
-        _driver.FindElement(By.Id("add")).Click();
+        var addButton = _driver.FindElement(By.Id("add"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addButton);
 
         Test.Info("Verificando mensaje de error");
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
