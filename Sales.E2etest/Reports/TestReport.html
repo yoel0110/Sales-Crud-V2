@@ -1,0 +1,2100 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <title></title>
+ <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c439bdbc7bade3d85af3b90e9e69c30ebc87445f/commons/img/logo.png">
+ <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c439bdbc7bade3d85af3b90e9e69c30ebc87445f/commons/img/logo.png">
+ <link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@78fa5a2421587b8228150e93142e5ba97178e85b/spark/css/spark-style.css" rel="stylesheet" />
+ <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@78fa5a2421587b8228150e93142e5ba97178e85b/spark/js/jsontree.js"></script>
+ <style></style>
+</head>
+<body class="spa  standard">
+ <div class="app">
+  <div class="layout">
+   <div class="header navbar">
+ <div class="vheader">
+  <div class="nav-logo">
+   <a href="#">
+	 <div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c43b89d03a7c43dae8bb8f0f078bad1997af6b3b/commons/img/logo.png')"></div>
+   </a>
+  </div>
+  <ul class="nav-left">
+   <li class="search-box">
+	<a class="search-toggle" href="#"><i class="search-icon fa fa-search"></i><i class="search-icon-close fa fa-close"></i></a>
+   </li>
+   <li class="search-input">
+    <input id="search-tests" class="form-control" type="text" placeholder="Search...">
+   </li>
+  </ul>
+  <ul class="nav-right">
+   <li class="m-r-10"><a href="#"><span class="badge badge-primary"></span></a></li>
+   <li class="m-r-10">
+    <a href="#"><span class="badge badge-primary">8/5/2026 11:28:03 AM</span></a>
+   </li>
+  </ul>
+ </div>
+</div>
+   <div class="side-nav">
+ <div class="side-nav-inner">
+  <ul class="side-nav-menu">
+   <li class="nav-item dropdown" onclick="toggleView('test-view')">
+    <a id="nav-test" class="dropdown-toggle" href="#">
+     <span class="ico"><i class="fa fa-list"></i></span>
+    </a>
+   </li>
+    <li class="nav-item dropdown" onclick="toggleView('category-view')">
+     <a id="nav-category" class="dropdown-toggle" href="#">
+      <span class="ico"><i class="fa fa-tag"></i></span>
+     </a>
+    </li>
+   <li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+    <a id="nav-dashboard" class="dropdown-toggle" href="#">
+     <span class="ico"><i class="fa fa-bar-chart"></i></span>
+    </a>
+   </li>
+  </ul>
+ </div>
+</div>
+
+   <div class="vcontainer">
+    <div class="main-content">
+     
+
+<div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+      <ul class="tools pull-left">
+        <li><a href="#"><span class="font-size-14">Tests</span></a></li>
+      </ul>
+      <ul class="tools text-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+          <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+ <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>             <div class="dropdown-divider"></div>
+            <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
+          <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
+ <a class="dropdown-item" href="#">Prueba de limites</a>  <a class="dropdown-item" href="#">Prueba negativa</a>  <a class="dropdown-item" href="#">Camino feliz</a>           </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item" status="pass" test-id="1"
+          author=""
+          tag="Prueba de limites "
+          device="">
+          <div class="test-detail">
+            <p class="name">Login_Boundary_EmptyCredentials</p>
+            <p class="text-sm">
+              <span>11:28:03 AM</span> / <span>1739.99 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Login_Boundary_EmptyCredentials</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:03 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:05 AM</span>
+                  <span class='badge badge-default'>1739.99 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba de limites</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Login_Boundary_EmptyCredentials_20260805_112805.png' src="Screenshots\Login_Boundary_EmptyCredentials_20260805_112805.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:05</td>
+        <td>
+Navegando a la aplicacion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:05</td>
+        <td>
+Esperando formulario de login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:05</td>
+        <td>
+Intentando iniciar sesion con campos vacios        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:05</td>
+        <td>
+Verificando que permanece en el formulario de login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:05</td>
+        <td>
+Campos vacios mantienen al usuario en login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:05</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="2"
+          author=""
+          tag="Prueba negativa "
+          device="">
+          <div class="test-detail">
+            <p class="name">Login_Failure_InvalidCredentials</p>
+            <p class="text-sm">
+              <span>11:28:05 AM</span> / <span>1967.65 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Login_Failure_InvalidCredentials</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:05 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:07 AM</span>
+                  <span class='badge badge-default'>1967.65 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba negativa</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Login_Failure_InvalidCredentials_20260805_112807.png' src="Screenshots\Login_Failure_InvalidCredentials_20260805_112807.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:06</td>
+        <td>
+Navegando a la aplicacion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:06</td>
+        <td>
+Esperando formulario de login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:07</td>
+        <td>
+Ingresando credenciales invalidas        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:07</td>
+        <td>
+Verificando mensaje de error        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:07</td>
+        <td>
+Login invalido rechazado correctamente        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:07</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="3"
+          author=""
+          tag="Camino feliz "
+          device="">
+          <div class="test-detail">
+            <p class="name">Login_Success_ValidCredentials</p>
+            <p class="text-sm">
+              <span>11:28:07 AM</span> / <span>1932.86 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Login_Success_ValidCredentials</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:07 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:09 AM</span>
+                  <span class='badge badge-default'>1932.86 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Camino feliz</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Login_Success_ValidCredentials_20260805_112809.png' src="Screenshots\Login_Success_ValidCredentials_20260805_112809.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:08</td>
+        <td>
+Navegando a la aplicacion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:09</td>
+        <td>
+Esperando formulario de login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:09</td>
+        <td>
+Ingresando credenciales validas        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:09</td>
+        <td>
+Verificando que se muestra el usuario autenticado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:09</td>
+        <td>
+Login exitoso        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:09</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="4"
+          author=""
+          tag="Prueba de limites "
+          device="">
+          <div class="test-detail">
+            <p class="name">Logout_Boundary_CookieRemoved</p>
+            <p class="text-sm">
+              <span>11:28:09 AM</span> / <span>1955.3 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Logout_Boundary_CookieRemoved</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:09 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:11 AM</span>
+                  <span class='badge badge-default'>1955.3 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba de limites</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Logout_Boundary_CookieRemoved_20260805_112811.png' src="Screenshots\Logout_Boundary_CookieRemoved_20260805_112811.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:10</td>
+        <td>
+Iniciando sesion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:11</td>
+        <td>
+Haciendo clic en cerrar sesion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:11</td>
+        <td>
+Recargando pagina tras cerrar sesion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:11</td>
+        <td>
+Verificando que aun se muestra el formulario de login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:11</td>
+        <td>
+Cookie de sesion eliminada correctamente        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:11</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="5"
+          author=""
+          tag="Prueba negativa "
+          device="">
+          <div class="test-detail">
+            <p class="name">Logout_Failure_AccessWithoutSession</p>
+            <p class="text-sm">
+              <span>11:28:11 AM</span> / <span>1568.33 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Logout_Failure_AccessWithoutSession</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:11 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:13 AM</span>
+                  <span class='badge badge-default'>1568.33 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba negativa</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Logout_Failure_AccessWithoutSession_20260805_112813.png' src="Screenshots\Logout_Failure_AccessWithoutSession_20260805_112813.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:12</td>
+        <td>
+Navegando a la aplicacion sin sesion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:13</td>
+        <td>
+Esperando formulario de login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:13</td>
+        <td>
+Verificando que no se muestra el sistema        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:13</td>
+        <td>
+Acceso sin sesion correctamente bloqueado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:13</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="6"
+          author=""
+          tag="Camino feliz "
+          device="">
+          <div class="test-detail">
+            <p class="name">Logout_Success_ReturnsToLogin</p>
+            <p class="text-sm">
+              <span>11:28:13 AM</span> / <span>1858.8 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Logout_Success_ReturnsToLogin</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:13 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:15 AM</span>
+                  <span class='badge badge-default'>1858.8 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Camino feliz</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Logout_Success_ReturnsToLogin_20260805_112815.png' src="Screenshots\Logout_Success_ReturnsToLogin_20260805_112815.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:14</td>
+        <td>
+Iniciando sesion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:15</td>
+        <td>
+Haciendo clic en cerrar sesion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:15</td>
+        <td>
+Verificando que se muestra el formulario de login        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:15</td>
+        <td>
+Cierre de sesion exitoso        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:15</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="7"
+          author=""
+          tag="Prueba de limites "
+          device="">
+          <div class="test-detail">
+            <p class="name">Create_Boundary_NegativePrice</p>
+            <p class="text-sm">
+              <span>11:28:15 AM</span> / <span>2518.15 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Create_Boundary_NegativePrice</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:15 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:17 AM</span>
+                  <span class='badge badge-default'>2518.15 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba de limites</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Create_Boundary_NegativePrice_20260805_112817.png' src="Screenshots\Create_Boundary_NegativePrice_20260805_112817.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:17</td>
+        <td>
+Abriendo formulario de nuevo producto        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:17</td>
+        <td>
+Creando producto con precio negativo        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:17</td>
+        <td>
+Verificando mensaje de error        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:17</td>
+        <td>
+Precio negativo rechazado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:17</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="8"
+          author=""
+          tag="Prueba negativa "
+          device="">
+          <div class="test-detail">
+            <p class="name">Create_Failure_EmptyName</p>
+            <p class="text-sm">
+              <span>11:28:18 AM</span> / <span>2349.44 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Create_Failure_EmptyName</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:18 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:20 AM</span>
+                  <span class='badge badge-default'>2349.44 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba negativa</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Create_Failure_EmptyName_20260805_112820.png' src="Screenshots\Create_Failure_EmptyName_20260805_112820.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:19</td>
+        <td>
+Abriendo formulario de nuevo producto        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:20</td>
+        <td>
+Enviando formulario sin nombre        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:20</td>
+        <td>
+Verificando que el formulario sigue visible        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:20</td>
+        <td>
+Formulario rechazo nombre vacio        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:20</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="9"
+          author=""
+          tag="Camino feliz "
+          device="">
+          <div class="test-detail">
+            <p class="name">Create_Success_ValidProduct</p>
+            <p class="text-sm">
+              <span>11:28:20 AM</span> / <span>2508.05 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Create_Success_ValidProduct</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:20 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:22 AM</span>
+                  <span class='badge badge-default'>2508.05 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Camino feliz</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Create_Success_ValidProduct_20260805_112822.png' src="Screenshots\Create_Success_ValidProduct_20260805_112822.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:22</td>
+        <td>
+Abriendo formulario de nuevo producto        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:22</td>
+        <td>
+Creando producto: Producto E2E 20260805112822        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:22</td>
+        <td>
+Verificando mensaje de exito        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:22</td>
+        <td>
+Producto creado exitosamente        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:22</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="10"
+          author=""
+          tag="Prueba de limites "
+          device="">
+          <div class="test-detail">
+            <p class="name">Delete_Boundary_LastRemaining</p>
+            <p class="text-sm">
+              <span>11:28:23 AM</span> / <span>2691 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Delete_Boundary_LastRemaining</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:23 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:25 AM</span>
+                  <span class='badge badge-default'>2691 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba de limites</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Delete_Boundary_LastRemaining_20260805_112825.png' src="Screenshots\Delete_Boundary_LastRemaining_20260805_112825.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:24</td>
+        <td>
+Cargando productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:25</td>
+        <td>
+Filas iniciales: 10        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:25</td>
+        <td>
+Seleccionando primer producto para eliminar        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:25</td>
+        <td>
+Confirmando eliminacion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:25</td>
+        <td>
+Verificando que la UI se actualiza        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:25</td>
+        <td>
+Eliminacion en limite de filas procesada        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:25</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="11"
+          author=""
+          tag="Prueba negativa "
+          device="">
+          <div class="test-detail">
+            <p class="name">Delete_Failure_Cancel</p>
+            <p class="text-sm">
+              <span>11:28:25 AM</span> / <span>2455.45 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Delete_Failure_Cancel</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:25 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:28 AM</span>
+                  <span class='badge badge-default'>2455.45 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba negativa</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Delete_Failure_Cancel_20260805_112828.png' src="Screenshots\Delete_Failure_Cancel_20260805_112828.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:27</td>
+        <td>
+Cargando productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:28</td>
+        <td>
+Seleccionando primer producto para eliminar        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:28</td>
+        <td>
+Cancelando eliminacion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:28</td>
+        <td>
+Verificando que la lista sigue visible        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:28</td>
+        <td>
+Eliminacion cancelada correctamente        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:28</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="12"
+          author=""
+          tag="Camino feliz "
+          device="">
+          <div class="test-detail">
+            <p class="name">Delete_Success_FirstProduct</p>
+            <p class="text-sm">
+              <span>11:28:28 AM</span> / <span>2722.34 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Delete_Success_FirstProduct</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:28 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:31 AM</span>
+                  <span class='badge badge-default'>2722.34 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Camino feliz</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Delete_Success_FirstProduct_20260805_112831.png' src="Screenshots\Delete_Success_FirstProduct_20260805_112831.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:30</td>
+        <td>
+Cargando productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:30</td>
+        <td>
+Seleccionando primer producto para eliminar        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:30</td>
+        <td>
+Confirmando eliminacion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:30</td>
+        <td>
+Verificando mensaje de exito        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:31</td>
+        <td>
+Producto eliminado exitosamente        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:31</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="13"
+          author=""
+          tag="Prueba de limites "
+          device="">
+          <div class="test-detail">
+            <p class="name">Filter_Boundary_ZeroResults</p>
+            <p class="text-sm">
+              <span>11:28:31 AM</span> / <span>2678.3 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Filter_Boundary_ZeroResults</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:31 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:33 AM</span>
+                  <span class='badge badge-default'>2678.3 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba de limites</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Filter_Boundary_ZeroResults_20260805_112833.png' src="Screenshots\Filter_Boundary_ZeroResults_20260805_112833.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:33</td>
+        <td>
+Cargando productos con filtro base        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:33</td>
+        <td>
+Filtrando con precio extremo sin resultados        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:33</td>
+        <td>
+Verificando que se muestra lista vacia        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:33</td>
+        <td>
+Filtro sin resultados manejado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:33</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="14"
+          author=""
+          tag="Prueba negativa "
+          device="">
+          <div class="test-detail">
+            <p class="name">Filter_Failure_InvalidPrice</p>
+            <p class="text-sm">
+              <span>11:28:33 AM</span> / <span>2692.57 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Filter_Failure_InvalidPrice</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:33 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:36 AM</span>
+                  <span class='badge badge-default'>2692.57 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba negativa</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Filter_Failure_InvalidPrice_20260805_112836.png' src="Screenshots\Filter_Failure_InvalidPrice_20260805_112836.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:35</td>
+        <td>
+Cargando productos con filtro base        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:36</td>
+        <td>
+Ingresando precio negativo en el filtro        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:36</td>
+        <td>
+Verificando que la UI se muestra sin excepciones        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:36</td>
+        <td>
+Filtro de precio negativo manejado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:36</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="15"
+          author=""
+          tag="Camino feliz "
+          device="">
+          <div class="test-detail">
+            <p class="name">Filter_Success_ByCategory</p>
+            <p class="text-sm">
+              <span>11:28:36 AM</span> / <span>2489.3 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Filter_Success_ByCategory</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:36 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:39 AM</span>
+                  <span class='badge badge-default'>2489.3 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Camino feliz</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Filter_Success_ByCategory_20260805_112839.png' src="Screenshots\Filter_Success_ByCategory_20260805_112839.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:38</td>
+        <td>
+Cargando productos con filtro base        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:38</td>
+        <td>
+Cambiando filtro de categoria        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:38</td>
+        <td>
+Verificando que la UI se actualiza        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:39</td>
+        <td>
+Filtro de categoria aplicado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:39</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="16"
+          author=""
+          tag="Prueba de limites "
+          device="">
+          <div class="test-detail">
+            <p class="name">Read_Boundary_LargeLength</p>
+            <p class="text-sm">
+              <span>11:28:39 AM</span> / <span>2681.1 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Read_Boundary_LargeLength</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:39 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:42 AM</span>
+                  <span class='badge badge-default'>2681.1 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba de limites</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Read_Boundary_LargeLength_20260805_112842.png' src="Screenshots\Read_Boundary_LargeLength_20260805_112842.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:41</td>
+        <td>
+Esperando carga de productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:41</td>
+        <td>
+Ajustando filtro para mostrar productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:41</td>
+        <td>
+Solicitando cantidad limite de productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:41</td>
+        <td>
+Verificando que la tabla se muestra sin errores        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:41</td>
+        <td>
+Cantidad limite procesada correctamente        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:42</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="17"
+          author=""
+          tag="Prueba negativa "
+          device="">
+          <div class="test-detail">
+            <p class="name">Read_Failure_UnauthorizedAccess</p>
+            <p class="text-sm">
+              <span>11:28:42 AM</span> / <span>3314.63 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Read_Failure_UnauthorizedAccess</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:42 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:45 AM</span>
+                  <span class='badge badge-default'>3314.63 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=17</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba negativa</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Read_Failure_UnauthorizedAccess_20260805_112845.png' src="Screenshots\Read_Failure_UnauthorizedAccess_20260805_112845.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:45</td>
+        <td>
+Navegando a la API sin autenticacion        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:45</td>
+        <td>
+Verificando respuesta de error        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:45</td>
+        <td>
+Acceso no autorizado a la API correctamente bloqueado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:45</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="18"
+          author=""
+          tag="Camino feliz "
+          device="">
+          <div class="test-detail">
+            <p class="name">Read_Success_ListLoaded</p>
+            <p class="text-sm">
+              <span>11:28:45 AM</span> / <span>2408.78 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Read_Success_ListLoaded</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:45 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:47 AM</span>
+                  <span class='badge badge-default'>2408.78 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=18</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Camino feliz</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Read_Success_ListLoaded_20260805_112847.png' src="Screenshots\Read_Success_ListLoaded_20260805_112847.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:47</td>
+        <td>
+Esperando carga de productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:47</td>
+        <td>
+Ajustando filtro para mostrar productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:47</td>
+        <td>
+Verificando que la tabla tiene filas        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:47</td>
+        <td>
+Lista de productos cargada        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:47</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="19"
+          author=""
+          tag="Prueba de limites "
+          device="">
+          <div class="test-detail">
+            <p class="name">Update_Boundary_MaxPrice</p>
+            <p class="text-sm">
+              <span>11:28:48 AM</span> / <span>2743.67 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Update_Boundary_MaxPrice</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:48 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:50 AM</span>
+                  <span class='badge badge-default'>2743.67 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=19</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba de limites</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Update_Boundary_MaxPrice_20260805_112850.png' src="Screenshots\Update_Boundary_MaxPrice_20260805_112850.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:49</td>
+        <td>
+Cargando productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:50</td>
+        <td>
+Seleccionando primer producto para editar        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:50</td>
+        <td>
+Actualizando con precio maximo        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:50</td>
+        <td>
+Verificando mensaje de respuesta        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:50</td>
+        <td>
+Precio maximo procesado        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:50</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="20"
+          author=""
+          tag="Prueba negativa "
+          device="">
+          <div class="test-detail">
+            <p class="name">Update_Failure_ClearName</p>
+            <p class="text-sm">
+              <span>11:28:50 AM</span> / <span>2611.55 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Update_Failure_ClearName</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:50 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:53 AM</span>
+                  <span class='badge badge-default'>2611.55 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=20</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Prueba negativa</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Update_Failure_ClearName_20260805_112853.png' src="Screenshots\Update_Failure_ClearName_20260805_112853.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:52</td>
+        <td>
+Cargando productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:53</td>
+        <td>
+Seleccionando primer producto para editar        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:53</td>
+        <td>
+Borrando nombre del producto        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:53</td>
+        <td>
+Verificando que el formulario no se envio        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:53</td>
+        <td>
+Actualizacion con nombre vacio rechazada        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:53</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="21"
+          author=""
+          tag="Camino feliz "
+          device="">
+          <div class="test-detail">
+            <p class="name">Update_Success_ChangePrice</p>
+            <p class="text-sm">
+              <span>11:28:53 AM</span> / <span>2746.89 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Update_Success_ChangePrice</h5>
+                  <span class='badge badge-success'>8/5/2026 11:28:53 AM</span>
+                  <span class='badge badge-danger'>8/5/2026 11:28:56 AM</span>
+                  <span class='badge badge-default'>2746.89 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=21</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+ <div class="m-t-15"> <span class="badge badge-pill badge-default"><i class="fa fa-tag"></i> Camino feliz</span> </div>               </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots\Update_Success_ChangePrice_20260805_112856.png' src="Screenshots\Update_Success_ChangePrice_20260805_112856.png">
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:55</td>
+        <td>
+Cargando productos        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:55</td>
+        <td>
+Seleccionando primer producto para editar        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:55</td>
+        <td>
+Actualizando precio del producto        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Aug 05, 2026 11:28:56</td>
+        <td>
+Verificando mensaje de exito        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:56</td>
+        <td>
+Producto actualizado exitosamente        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Aug 05, 2026 11:28:56</td>
+        <td>
+Test Passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="test-content scrollable">
+    <div class="test-content-tools">
+      <ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+    </div>
+    <div class="test-content-detail"><div class="detail-body"></div></div>
+  </div>
+</div>
+
+
+<div class="test-wrapper row view category-view attributes-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+      <ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+      <ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">3</span></a></li></ul>
+    </div>
+    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item">
+          <div class="test-detail">
+            <span class="meta">
+ <span class='badge log pass-bg'>7</span>             </span>
+            <p class="name">Prueba de limites</p>
+            <p class="duration text-sm">7 tests</p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="info">
+              <h4>Prueba de limites</h4>
+ <span status="pass" class='badge log pass-bg'>7 passed</span>             </div>
+            <table class='table table-sm mt-4'>
+              <thead>
+                <tr>
+                  <th class="status-col">Status</th>
+                  <th class="timestamp-col">Timestamp</th>
+                  <th>TestName</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:03 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='1' id='1'>Login_Boundary_EmptyCredentials</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:09 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='4' id='4'>Logout_Boundary_CookieRemoved</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:15 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='7' id='7'>Create_Boundary_NegativePrice</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:23 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='10' id='10'>Delete_Boundary_LastRemaining</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:31 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='13' id='13'>Filter_Boundary_ZeroResults</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:39 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='16' id='16'>Read_Boundary_LargeLength</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:48 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='19' id='19'>Update_Boundary_MaxPrice</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+        <li class="test-item">
+          <div class="test-detail">
+            <span class="meta">
+ <span class='badge log pass-bg'>7</span>             </span>
+            <p class="name">Prueba negativa</p>
+            <p class="duration text-sm">7 tests</p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="info">
+              <h4>Prueba negativa</h4>
+ <span status="pass" class='badge log pass-bg'>7 passed</span>             </div>
+            <table class='table table-sm mt-4'>
+              <thead>
+                <tr>
+                  <th class="status-col">Status</th>
+                  <th class="timestamp-col">Timestamp</th>
+                  <th>TestName</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:05 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='2' id='2'>Login_Failure_InvalidCredentials</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:11 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='5' id='5'>Logout_Failure_AccessWithoutSession</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:18 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='8' id='8'>Create_Failure_EmptyName</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:25 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='11' id='11'>Delete_Failure_Cancel</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:33 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='14' id='14'>Filter_Failure_InvalidPrice</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:42 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='17' id='17'>Read_Failure_UnauthorizedAccess</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:50 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='20' id='20'>Update_Failure_ClearName</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+        <li class="test-item">
+          <div class="test-detail">
+            <span class="meta">
+ <span class='badge log pass-bg'>7</span>             </span>
+            <p class="name">Camino feliz</p>
+            <p class="duration text-sm">7 tests</p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="info">
+              <h4>Camino feliz</h4>
+ <span status="pass" class='badge log pass-bg'>7 passed</span>             </div>
+            <table class='table table-sm mt-4'>
+              <thead>
+                <tr>
+                  <th class="status-col">Status</th>
+                  <th class="timestamp-col">Timestamp</th>
+                  <th>TestName</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:07 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='3' id='3'>Login_Success_ValidCredentials</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:13 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='6' id='6'>Logout_Success_ReturnsToLogin</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:20 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='9' id='9'>Create_Success_ValidProduct</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:28 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='12' id='12'>Delete_Success_FirstProduct</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:36 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='15' id='15'>Filter_Success_ByCategory</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:45 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='18' id='18'>Read_Success_ListLoaded</a>
+                  </td>
+                </tr>
+                <tr class="tag-test-status" status="pass">
+                  <td><span class="badge log pass-bg">Pass</span></td>
+                  <td>11:28:53 AM</td>
+                  <td>
+                    <a href="#" class="linked" test-id='21' id='21'>Update_Success_ChangePrice</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="test-content scrollable">
+    <div class="test-content-detail">
+      <div class="detail-body"></div>
+    </div>
+  </div>
+</div>
+     
+
+<div class="container-fluid p-4 view dashboard-view">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0">Started</p>
+          <h3>8/5/2026 11:28:03 AM</h3>
+      </div></div>
+    </div>
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0">Ended</p>
+          <h3>8/5/2026 11:28:56 AM</h3>
+      </div></div>
+    </div>
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0 text-pass">Tests Passed</p>
+          <h3>21</h3>
+      </div></div>
+    </div>
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0 text-fail">Tests Failed</p>
+          <h3>0</h3>
+      </div></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="card-title">Tests</h6>
+        </div>
+        <div class="card-body">
+          <div class="">
+            <canvas id='parent-analysis' width='115' height='90'></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div><small data-tooltip='1%'>
+            <b>21</b> tests passed
+            </small>
+          </div>
+          <div>
+            <small data-tooltip='0%'><b>0</b> tests failed, 
+            <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="card-title">Log events</h6>
+        </div>
+        <div class="card-body">
+          <div class="">
+            <canvas id='events-analysis' width='115' height='90'></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div><small data-tooltip='0%'><b>42</b> events passed</small></div>
+          <div>
+            <small data-tooltip='0%'><b>0</b> events failed, 
+            <b data-tooltip='%'>74</b> others
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"><div class="col-md-12">
+    <div class="card"><div class="card-header"><p>Timeline</p></div>
+      <div class="card-body pt-0"><div>
+        <canvas id="timeline" height="120"></canvas>
+      </div></div>
+    </div>
+  </div></div>
+  <script>
+	var timeline = { "Login_Boundary_EmptyCredentials":1739.9886,"Login_Failure_InvalidCredentials":1967.6475,"Login_Success_ValidCredentials":1932.8568,"Logout_Boundary_CookieRemoved":1955.298,"Logout_Failure_AccessWithoutSession":1568.3295,"Logout_Success_ReturnsToLogin":1858.7984,"Create_Boundary_NegativePrice":2518.1529,"Create_Failure_EmptyName":2349.4441,"Create_Success_ValidProduct":2508.0494,"Delete_Boundary_LastRemaining":2690.9995,"Delete_Failure_Cancel":2455.454,"Delete_Success_FirstProduct":2722.3371,"Filter_Boundary_ZeroResults":2678.2997,"Filter_Failure_InvalidPrice":2692.5667,"Filter_Success_ByCategory":2489.3042,"Read_Boundary_LargeLength":2681.0977,"Read_Failure_UnauthorizedAccess":3314.6275,"Read_Success_ListLoaded":2408.7757,"Update_Boundary_MaxPrice":2743.6654,"Update_Failure_ClearName":2611.5474,"Update_Success_ChangePrice":2746.8899 };
+  </script>
+  <div class="row">
+    <div class="col-md-4 category-container">
+      <div class="card">
+        <div class="card-header"><p>Tags</p></div>
+        <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+          <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
+            <tr>
+              <td>Prueba de limites</td>
+              <td>7</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td>Prueba negativa</td>
+              <td>7</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td>Camino feliz</td>
+              <td>7</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>100%</td>
+            </tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var statusGroup = {
+    parentCount: 21,
+    childCount: 0,
+    grandChildCount: 0,
+    eventsCount: 116,
+
+passParent:21,failParent:0,warningParent:0,skipParent:0,    
+passChild:0,failChild:0,warningChild:0,skipChild:0,infoChild:0,    
+passGrandChild:0,failGrandChild:0,warningGrandChild:0,skipGrandChild:0,infoGrandChild:0,    
+passEvents:42,failEvents:0,warningEvents:0,skipEvents:0,infoEvents:74,  };
+</script>
+
+    </div>
+   </div>
+  </div>
+ </div>
+ <script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c439bdbc7bade3d85af3b90e9e69c30ebc87445f/spark/js/spark-script.js"></script>
+<script type='text/javascript'></script>
+</body>
+</html>
