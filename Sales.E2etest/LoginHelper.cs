@@ -8,6 +8,8 @@ public static class LoginHelper
     {
         driver.Navigate().GoToUrl("http://localhost:5173");
 
+        WaitUntilElementVisible(driver, By.Id("username"), TimeSpan.FromSeconds(5));
+
         var usernameInput = driver.FindElement(By.Id("username"));
         usernameInput.Clear();
         usernameInput.SendKeys(username);
