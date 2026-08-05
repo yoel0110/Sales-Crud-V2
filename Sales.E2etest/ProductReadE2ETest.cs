@@ -29,4 +29,17 @@ public class ProductReadE2ETest : TestBase
         Assert.That(rows.Count, Is.GreaterThan(0));
         Test.Pass("Lista de productos cargada");
     }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Read_Failure_UnauthorizedAccess()
+    {
+        Test.Info("Navegando a la API sin autenticacion");
+        _driver.Navigate().GoToUrl("http://localhost:5138/api/v1/product/all?filter=1&minPrice=0&maxPrice=1000&price=0&length=10&category=Toys");
+
+        Test.Info("Verificando respuesta de error");
+        var body = _driver.FindElement(By.TagName("body")).Text;
+        Assert.That(body.ToLowerInvariant(), Does.Contain("401").Or.Contains("unauthorized"));
+        Test.Pass("Acceso no autorizado a la API correctamente bloqueado");
+    }
 }
