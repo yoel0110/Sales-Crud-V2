@@ -59,4 +59,28 @@ public class ProductCreateE2ETest : TestBase
         Assert.That(formButton.Displayed, Is.True);
         Test.Pass("Formulario rechazo nombre vacio");
     }
+
+    [Test]
+    [Category("Prueba de limites")]
+    public void Create_Boundary_NegativePrice()
+    {
+        Test.Info("Abriendo formulario de nuevo producto");
+        _driver.FindElement(By.Id("new-product")).Click();
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+
+        var productName = $"Producto Negativo {DateTime.Now:yyyyMMddHHmmss}";
+        Test.Info("Creando producto con precio negativo");
+        _driver.FindElement(By.Id("productName")).SendKeys(productName);
+        _driver.FindElement(By.Id("categoryId")).SendKeys("Books");
+        _driver.FindElement(By.Id("price")).SendKeys("-10");
+        _driver.FindElement(By.Id("stock")).SendKeys("5");
+        _driver.FindElement(By.Id("add")).Click();
+
+        Test.Info("Verificando mensaje de error");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
+
+        var message = _driver.FindElement(By.Id("response-modal-message")).Text;
+        Assert.That(message, Is.Not.Empty);
+        Test.Pass("Precio negativo rechazado");
+    }
 }
