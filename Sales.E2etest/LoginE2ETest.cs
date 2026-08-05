@@ -17,6 +17,7 @@ public class LoginE2ETest : TestBase
     }
 
     [Test]
+    [Category("Camino feliz")]
     public void Login_Success_ValidCredentials()
     {
         Test.Info("Navegando a la aplicacion");
@@ -36,5 +37,28 @@ public class LoginE2ETest : TestBase
         var loggedUser = _driver.FindElement(By.Id("logged-user")).Text;
         Assert.That(loggedUser, Is.EqualTo("admin"));
         Test.Pass("Login exitoso");
+    }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Login_Failure_InvalidCredentials()
+    {
+        Test.Info("Navegando a la aplicacion");
+        _driver.Navigate().GoToUrl("http://localhost:5173");
+
+        Test.Info("Esperando formulario de login");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("username"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Ingresando credenciales invalidas");
+        _driver.FindElement(By.Id("username")).SendKeys("admin");
+        _driver.FindElement(By.Id("password")).SendKeys("contraseñainvalida");
+        _driver.FindElement(By.Id("login-button")).Click();
+
+        Test.Info("Verificando mensaje de error");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
+
+        var errorMessage = _driver.FindElement(By.Id("response-modal-message")).Text;
+        Assert.That(errorMessage.ToLowerInvariant(), Does.Contain("incorrectos"));
+        Test.Pass("Login invalido rechazado correctamente");
     }
 }
