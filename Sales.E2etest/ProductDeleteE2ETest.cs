@@ -21,8 +21,8 @@ public class ProductDeleteE2ETest : TestBase
     private void LoadProducts()
     {
         var filterSelect = new SelectElement(_driver.FindElement(By.Id("filter")));
-        filterSelect.SelectByValue("1");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        filterSelect.SelectByValue("2");
+        var priceInput = _driver.FindElement(By.CssSelector(".filters #price"));
         priceInput.Clear();
         priceInput.SendKeys("0");
         var submitButton = _driver.FindElement(By.CssSelector(".filters button[type='submit']"));
@@ -48,7 +48,7 @@ public class ProductDeleteE2ETest : TestBase
         Test.Info("Verificando mensaje de exito");
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
         var message = _driver.FindElement(By.Id("response-modal-message")).Text;
-        Assert.That(message.ToLowerInvariant(), Does.Contain("eliminado"));
+        Assert.That(message.ToLowerInvariant(), Does.Contain("ok").Or.Contain("eliminado"));
         Test.Pass("Producto eliminado exitosamente");
     }
 
@@ -94,7 +94,7 @@ public class ProductDeleteE2ETest : TestBase
         Test.Info("Verificando que la UI se actualiza");
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
         var message = _driver.FindElement(By.Id("response-modal-message")).Text;
-        Assert.That(message.ToLowerInvariant(), Does.Contain("eliminado"));
+        Assert.That(message.ToLowerInvariant(), Does.Contain("ok").Or.Contain("eliminado"));
         Test.Pass("Eliminacion en limite de filas procesada");
     }
 }

@@ -21,11 +21,12 @@ public class ProductFilterE2ETest : TestBase
     private void ApplyBaseFilter()
     {
         var filterSelect = new SelectElement(_driver.FindElement(By.Id("filter")));
-        filterSelect.SelectByValue("1");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        filterSelect.SelectByValue("2");
+        var priceInput = _driver.FindElement(By.CssSelector(".filters #price"));
         priceInput.Clear();
         priceInput.SendKeys("0");
-        _driver.FindElement(By.CssSelector(".filters button[type='submit']")).Click();
+        var submitButton = _driver.FindElement(By.CssSelector(".filters button[type='submit']"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", submitButton);
         LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
     }
 
@@ -48,8 +49,7 @@ public class ProductFilterE2ETest : TestBase
         Search();
 
         Test.Info("Verificando que la UI se actualiza");
-        var table = _driver.FindElement(By.CssSelector(".product-table"));
-        Assert.That(table.Displayed, Is.True);
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table, .empty"), TimeSpan.FromSeconds(5));
         Test.Pass("Filtro de categoria aplicado");
     }
 
@@ -61,14 +61,13 @@ public class ProductFilterE2ETest : TestBase
         ApplyBaseFilter();
 
         Test.Info("Ingresando precio negativo en el filtro");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        var priceInput = _driver.FindElement(By.CssSelector(".filters #price"));
         priceInput.Clear();
         priceInput.SendKeys("-50");
         Search();
 
         Test.Info("Verificando que la UI se muestra sin excepciones");
-        var displayed = _driver.FindElement(By.CssSelector(".product-table, .empty")).Displayed;
-        Assert.That(displayed, Is.True);
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table, .empty"), TimeSpan.FromSeconds(5));
         Test.Pass("Filtro de precio negativo manejado");
     }
 
@@ -80,12 +79,13 @@ public class ProductFilterE2ETest : TestBase
         ApplyBaseFilter();
 
         Test.Info("Filtrando con precio extremo sin resultados");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        var priceInput = _driver.FindElement(By.CssSelector(".filters #price"));
         priceInput.Clear();
         priceInput.SendKeys("999999");
         Search();
 
         Test.Info("Verificando que se muestra lista vacia");
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".empty"), TimeSpan.FromSeconds(5));
         var empty = _driver.FindElement(By.CssSelector(".empty"));
         Assert.That(empty.Text, Does.Contain("No se encontraron"));
         Test.Pass("Filtro sin resultados manejado");

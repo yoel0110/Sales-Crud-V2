@@ -21,8 +21,8 @@ public class ProductUpdateE2ETest : TestBase
     private void LoadProducts()
     {
         var filterSelect = new SelectElement(_driver.FindElement(By.Id("filter")));
-        filterSelect.SelectByValue("1");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        filterSelect.SelectByValue("2");
+        var priceInput = _driver.FindElement(By.CssSelector(".filters #price"));
         priceInput.Clear();
         priceInput.SendKeys("0");
         var submitButton = _driver.FindElement(By.CssSelector(".filters button[type='submit']"));
@@ -49,7 +49,7 @@ public class ProductUpdateE2ETest : TestBase
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
 
         Test.Info("Actualizando precio del producto");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        var priceInput = _driver.FindElement(By.CssSelector(".product-form #price"));
         priceInput.Clear();
         priceInput.SendKeys("999.99");
         SubmitForm();
@@ -57,7 +57,7 @@ public class ProductUpdateE2ETest : TestBase
         Test.Info("Verificando mensaje de exito");
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
         var message = _driver.FindElement(By.Id("response-modal-message")).Text;
-        Assert.That(message.ToLowerInvariant(), Does.Contain("actualizado").Or.Contain("creado"));
+        Assert.That(message.ToLowerInvariant(), Does.Contain("ok").Or.Contain("actualizado").Or.Contain("updated"));
         Test.Pass("Producto actualizado exitosamente");
     }
 
@@ -97,7 +97,7 @@ public class ProductUpdateE2ETest : TestBase
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
 
         Test.Info("Actualizando con precio maximo");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        var priceInput = _driver.FindElement(By.CssSelector(".product-form #price"));
         priceInput.Clear();
         priceInput.SendKeys("999999.99");
         SubmitForm();

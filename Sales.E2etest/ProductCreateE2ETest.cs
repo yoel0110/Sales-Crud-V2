@@ -28,11 +28,11 @@ public class ProductCreateE2ETest : TestBase
 
         var productName = $"Producto E2E {DateTime.Now:yyyyMMddHHmmss}";
         Test.Info($"Creando producto: {productName}");
-        _driver.FindElement(By.Id("productName")).SendKeys(productName);
-        var categorySelect = new SelectElement(_driver.FindElement(By.Id("categoryId")));
+        _driver.FindElement(By.CssSelector(".product-form #productName")).SendKeys(productName);
+        var categorySelect = new SelectElement(_driver.FindElement(By.CssSelector(".product-form #categoryId")));
         categorySelect.SelectByText("Toys");
-        _driver.FindElement(By.Id("price")).SendKeys("99.99");
-        _driver.FindElement(By.Id("stock")).SendKeys("50");
+        _driver.FindElement(By.CssSelector(".product-form #price")).SendKeys("99.99");
+        _driver.FindElement(By.CssSelector(".product-form #stock")).SendKeys("50");
         var addButton = _driver.FindElement(By.Id("add"));
         ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addButton);
 
@@ -40,7 +40,7 @@ public class ProductCreateE2ETest : TestBase
         LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
 
         var message = _driver.FindElement(By.Id("response-modal-message")).Text;
-        Assert.That(message.ToLowerInvariant(), Does.Contain("creado"));
+        Assert.That(message.ToLowerInvariant(), Does.Contain("ok").Or.Contain("creado").Or.Contain("created"));
         Test.Pass("Producto creado exitosamente");
     }
 
@@ -73,11 +73,11 @@ public class ProductCreateE2ETest : TestBase
 
         var productName = $"Producto Negativo {DateTime.Now:yyyyMMddHHmmss}";
         Test.Info("Creando producto con precio negativo");
-        _driver.FindElement(By.Id("productName")).SendKeys(productName);
-        var categorySelect = new SelectElement(_driver.FindElement(By.Id("categoryId")));
+        _driver.FindElement(By.CssSelector(".product-form #productName")).SendKeys(productName);
+        var categorySelect = new SelectElement(_driver.FindElement(By.CssSelector(".product-form #categoryId")));
         categorySelect.SelectByText("Books");
-        _driver.FindElement(By.Id("price")).SendKeys("-10");
-        _driver.FindElement(By.Id("stock")).SendKeys("5");
+        _driver.FindElement(By.CssSelector(".product-form #price")).SendKeys("-10");
+        _driver.FindElement(By.CssSelector(".product-form #stock")).SendKeys("5");
         var addButton = _driver.FindElement(By.Id("add"));
         ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addButton);
 

@@ -22,11 +22,12 @@ public class ProductReadE2ETest : TestBase
     {
         Test.Info("Ajustando filtro para mostrar productos");
         var filterSelect = new SelectElement(_driver.FindElement(By.Id("filter")));
-        filterSelect.SelectByValue("1");
-        var priceInput = _driver.FindElement(By.Id("price"));
+        filterSelect.SelectByValue("2");
+        var priceInput = _driver.FindElement(By.CssSelector(".filters #price"));
         priceInput.Clear();
         priceInput.SendKeys("0");
-        _driver.FindElement(By.CssSelector(".filters button[type='submit']")).Click();
+        var submitButton = _driver.FindElement(By.CssSelector(".filters button[type='submit']"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", submitButton);
         LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
     }
 
@@ -67,9 +68,10 @@ public class ProductReadE2ETest : TestBase
         Test.Info("Solicitando cantidad limite de productos");
         _driver.FindElement(By.Id("length")).Clear();
         _driver.FindElement(By.Id("length")).SendKeys("1000");
-        _driver.FindElement(By.CssSelector(".filters button[type='submit']")).Click();
+        var submitButton = _driver.FindElement(By.CssSelector(".filters button[type='submit']"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", submitButton);
 
-        Thread.Sleep(500);
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table, .empty"), TimeSpan.FromSeconds(5));
 
         Test.Info("Verificando que la tabla se muestra sin errores");
         var table = _driver.FindElement(By.CssSelector(".product-table"));
