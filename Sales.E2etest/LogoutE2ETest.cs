@@ -49,4 +49,25 @@ public class LogoutE2ETest : TestBase
         Assert.That(loginButton.Displayed, Is.True);
         Test.Pass("Acceso sin sesion correctamente bloqueado");
     }
+
+    [Test]
+    [Category("Prueba de limites")]
+    public void Logout_Boundary_CookieRemoved()
+    {
+        Test.Info("Iniciando sesion");
+        LoginHelper.Login(_driver);
+
+        Test.Info("Haciendo clic en cerrar sesion");
+        _driver.FindElement(By.Id("logout-button")).Click();
+
+        Test.Info("Recargando pagina tras cerrar sesion");
+        _driver.Navigate().Refresh();
+
+        Test.Info("Verificando que aun se muestra el formulario de login");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("login-button"), TimeSpan.FromSeconds(5));
+
+        var loginButton = _driver.FindElement(By.Id("login-button"));
+        Assert.That(loginButton.Displayed, Is.True);
+        Test.Pass("Cookie de sesion eliminada correctamente");
+    }
 }
