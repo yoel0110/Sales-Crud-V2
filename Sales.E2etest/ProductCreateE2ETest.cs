@@ -1,0 +1,91 @@
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+
+namespace Sales.E2etest;
+
+[TestFixture]
+public class ProductCreateE2ETest : TestBase
+{
+    private IWebDriver _driver = null!;
+
+    protected override IWebDriver Driver => _driver;
+
+    [SetUp]
+    public void Setup()
+    {
+        _driver = new ChromeDriver();
+        LoginHelper.Login(_driver);
+    }
+
+    [Test]
+    [Category("Camino feliz")]
+    public void Create_Success_ValidProduct()
+    {
+        Test.Info("Abriendo formulario de nuevo producto");
+        _driver.FindElement(By.Id("new-product")).Click();
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+
+        var productName = $"Producto E2E {DateTime.Now:yyyyMMddHHmmss}";
+        Test.Info($"Creando producto: {productName}");
+        _driver.FindElement(By.CssSelector(".product-form #productName")).SendKeys(productName);
+        var categorySelect = new SelectElement(_driver.FindElement(By.CssSelector(".product-form #categoryId")));
+        categorySelect.SelectByText("Toys");
+        _driver.FindElement(By.CssSelector(".product-form #price")).SendKeys("99.99");
+        _driver.FindElement(By.CssSelector(".product-form #stock")).SendKeys("50");
+        var addButton = _driver.FindElement(By.Id("add"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addButton);
+
+        Test.Info("Verificando mensaje de exito");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
+
+        var message = _driver.FindElement(By.Id("response-modal-message")).Text;
+        Assert.That(message.ToLowerInvariant(), Does.Contain("ok").Or.Contain("creado").Or.Contain("created"));
+        Test.Pass("Producto creado exitosamente");
+    }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Create_Failure_EmptyName()
+    {
+        Test.Info("Abriendo formulario de nuevo producto");
+        _driver.FindElement(By.Id("new-product")).Click();
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+
+        Test.Info("Enviando formulario sin nombre");
+        _driver.FindElement(By.Id("price")).SendKeys("10");
+        _driver.FindElement(By.Id("stock")).SendKeys("5");
+        _driver.FindElement(By.Id("add")).Click();
+
+        Test.Info("Verificando que el formulario sigue visible");
+        var formButton = _driver.FindElement(By.Id("add"));
+        Assert.That(formButton.Displayed, Is.True);
+        Test.Pass("Formulario rechazo nombre vacio");
+    }
+
+    [Test]
+    [Category("Prueba de limites")]
+    public void Create_Boundary_NegativePrice()
+    {
+        Test.Info("Abriendo formulario de nuevo producto");
+        _driver.FindElement(By.Id("new-product")).Click();
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+
+        var productName = $"Producto Negativo {DateTime.Now:yyyyMMddHHmmss}";
+        Test.Info("Creando producto con precio negativo");
+        _driver.FindElement(By.CssSelector(".product-form #productName")).SendKeys(productName);
+        var categorySelect = new SelectElement(_driver.FindElement(By.CssSelector(".product-form #categoryId")));
+        categorySelect.SelectByText("Books");
+        _driver.FindElement(By.CssSelector(".product-form #price")).SendKeys("-10");
+        _driver.FindElement(By.CssSelector(".product-form #stock")).SendKeys("5");
+        var addButton = _driver.FindElement(By.Id("add"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addButton);
+
+        Test.Info("Verificando mensaje de error");
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("response-modal-message"), TimeSpan.FromSeconds(5));
+
+        var message = _driver.FindElement(By.Id("response-modal-message")).Text;
+        Assert.That(message, Is.Not.Empty);
+        Test.Pass("Precio negativo rechazado");
+    }
+}

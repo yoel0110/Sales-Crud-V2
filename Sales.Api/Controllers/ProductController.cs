@@ -46,6 +46,11 @@ namespace Sales.Api.Controllers
         [HttpPost("create")]
         public async Task<ActionResult<ApiResponse<String>>> Add([FromBody] ProductDto product)
         {
+            if (string.IsNullOrWhiteSpace(product.ProductName) || product.Price < 0 || product.Stock < 0)
+            {
+                return BadRequest(ApiResponse<String>.Failure("Datos invalidos", statusCode: 400));
+            }
+
             var id = await _productService.Create(product);
             return Ok(ApiResponse<String>.SuccessFul(data: id, message: "Ok, created"));
         }
@@ -53,6 +58,11 @@ namespace Sales.Api.Controllers
         [HttpPut("update")]
         public async Task<ActionResult<ApiResponse<ProductDto>>> Update([FromBody] ProductDto product)
         {
+            if (string.IsNullOrWhiteSpace(product.ProductName) || product.Price < 0 || product.Stock < 0)
+            {
+                return BadRequest(ApiResponse<ProductDto>.Failure("Datos invalidos", statusCode: 400));
+            }
+
             var updatedProduct = await _productService.Update(product);
             var productDto = new ProductDto()
             {
