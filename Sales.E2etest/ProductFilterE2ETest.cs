@@ -33,4 +33,23 @@ public class ProductFilterE2ETest : TestBase
         Assert.That(rows.Count, Is.GreaterThanOrEqualTo(0));
         Test.Pass("Filtro de categoria aplicado");
     }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Filter_Failure_InvalidPrice()
+    {
+        Test.Info("Esperando carga de productos");
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Ingresando precio negativo en el filtro");
+        var priceInput = _driver.FindElement(By.Id("price"));
+        priceInput.Clear();
+        priceInput.SendKeys("-50");
+        _driver.FindElement(By.CssSelector(".filters button[type='submit']")).Click();
+
+        Test.Info("Verificando que la tabla se muestra sin excepciones");
+        var table = _driver.FindElement(By.CssSelector(".product-table"));
+        Assert.That(table.Displayed, Is.True);
+        Test.Pass("Filtro de precio negativo manejado");
+    }
 }
