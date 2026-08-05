@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace Sales.E2etest;
 
@@ -17,19 +18,31 @@ public class ProductDeleteE2ETest : TestBase
         LoginHelper.Login(_driver);
     }
 
+    private void LoadProducts()
+    {
+        var filterSelect = new SelectElement(_driver.FindElement(By.Id("filter")));
+        filterSelect.SelectByValue("1");
+        var priceInput = _driver.FindElement(By.Id("price"));
+        priceInput.Clear();
+        priceInput.SendKeys("0");
+        var submitButton = _driver.FindElement(By.CssSelector(".filters button[type='submit']"));
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", submitButton);
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+    }
+
     [Test]
     [Category("Camino feliz")]
     public void Delete_Success_FirstProduct()
     {
-        Test.Info("Esperando lista de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        Test.Info("Cargando productos");
+        LoadProducts();
 
         Test.Info("Seleccionando primer producto para eliminar");
         var deleteButton = _driver.FindElement(By.CssSelector("button[id^='delete-product-']"));
         deleteButton.Click();
 
         Test.Info("Confirmando eliminacion");
-        LoginHelper.WaitUntilElementExists(_driver, By.Id("confirm-accept"), TimeSpan.FromSeconds(3));
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("confirm-accept"), TimeSpan.FromSeconds(3));
         _driver.FindElement(By.Id("confirm-accept")).Click();
 
         Test.Info("Verificando mensaje de exito");
@@ -43,15 +56,15 @@ public class ProductDeleteE2ETest : TestBase
     [Category("Prueba negativa")]
     public void Delete_Failure_Cancel()
     {
-        Test.Info("Esperando lista de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        Test.Info("Cargando productos");
+        LoadProducts();
 
         Test.Info("Seleccionando primer producto para eliminar");
         var deleteButton = _driver.FindElement(By.CssSelector("button[id^='delete-product-']"));
         deleteButton.Click();
 
         Test.Info("Cancelando eliminacion");
-        LoginHelper.WaitUntilElementExists(_driver, By.Id("confirm-cancel"), TimeSpan.FromSeconds(3));
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("confirm-cancel"), TimeSpan.FromSeconds(3));
         _driver.FindElement(By.Id("confirm-cancel")).Click();
 
         Test.Info("Verificando que la lista sigue visible");
@@ -64,8 +77,8 @@ public class ProductDeleteE2ETest : TestBase
     [Category("Prueba de limites")]
     public void Delete_Boundary_LastRemaining()
     {
-        Test.Info("Esperando lista de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        Test.Info("Cargando productos");
+        LoadProducts();
 
         var initialRows = _driver.FindElements(By.CssSelector(".product-table tbody tr")).Count;
         Test.Info($"Filas iniciales: {initialRows}");
@@ -75,7 +88,7 @@ public class ProductDeleteE2ETest : TestBase
         deleteButton.Click();
 
         Test.Info("Confirmando eliminacion");
-        LoginHelper.WaitUntilElementExists(_driver, By.Id("confirm-accept"), TimeSpan.FromSeconds(3));
+        LoginHelper.WaitUntilElementVisible(_driver, By.Id("confirm-accept"), TimeSpan.FromSeconds(3));
         _driver.FindElement(By.Id("confirm-accept")).Click();
 
         Test.Info("Verificando que la UI se actualiza");
