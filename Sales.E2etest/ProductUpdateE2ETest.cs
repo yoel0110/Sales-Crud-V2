@@ -41,4 +41,27 @@ public class ProductUpdateE2ETest : TestBase
         Assert.That(message.ToLowerInvariant(), Does.Contain("actualizado").Or.Contain("creado"));
         Test.Pass("Producto actualizado exitosamente");
     }
+
+    [Test]
+    [Category("Prueba negativa")]
+    public void Update_Failure_ClearName()
+    {
+        Test.Info("Esperando lista de productos");
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+
+        Test.Info("Seleccionando primer producto para editar");
+        var editButton = _driver.FindElement(By.CssSelector("button[id^='edit-product-']"));
+        editButton.Click();
+        LoginHelper.WaitUntilElementExists(_driver, By.Id("productName"), TimeSpan.FromSeconds(3));
+
+        Test.Info("Borrando nombre del producto");
+        var nameInput = _driver.FindElement(By.Id("productName"));
+        nameInput.Clear();
+        _driver.FindElement(By.Id("add")).Click();
+
+        Test.Info("Verificando que el formulario no se envio");
+        var form = _driver.FindElement(By.CssSelector(".product-form"));
+        Assert.That(form.Displayed, Is.True);
+        Test.Pass("Actualizacion con nombre vacio rechazada");
+    }
 }
