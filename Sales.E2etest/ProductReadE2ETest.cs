@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace Sales.E2etest;
 
@@ -17,12 +18,24 @@ public class ProductReadE2ETest : TestBase
         LoginHelper.Login(_driver);
     }
 
+    private void LoadProducts()
+    {
+        Test.Info("Ajustando filtro para mostrar productos");
+        var filterSelect = new SelectElement(_driver.FindElement(By.Id("filter")));
+        filterSelect.SelectByValue("1");
+        var priceInput = _driver.FindElement(By.Id("price"));
+        priceInput.Clear();
+        priceInput.SendKeys("0");
+        _driver.FindElement(By.CssSelector(".filters button[type='submit']")).Click();
+        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+    }
+
     [Test]
     [Category("Camino feliz")]
     public void Read_Success_ListLoaded()
     {
         Test.Info("Esperando carga de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        LoadProducts();
 
         Test.Info("Verificando que la tabla tiene filas");
         var rows = _driver.FindElements(By.CssSelector(".product-table tbody tr"));
@@ -34,11 +47,12 @@ public class ProductReadE2ETest : TestBase
     [Category("Prueba negativa")]
     public void Read_Failure_UnauthorizedAccess()
     {
+        using var unauthenticatedDriver = new ChromeDriver();
         Test.Info("Navegando a la API sin autenticacion");
-        _driver.Navigate().GoToUrl("http://localhost:5138/api/v1/product/all?filter=1&minPrice=0&maxPrice=1000&price=0&length=10&category=Toys");
+        unauthenticatedDriver.Navigate().GoToUrl("http://localhost:5138/api/v1/product/all?filter=1&minPrice=0&maxPrice=1000&price=0&length=10&category=Toys");
 
         Test.Info("Verificando respuesta de error");
-        var body = _driver.FindElement(By.TagName("body")).Text;
+        var body = unauthenticatedDriver.FindElement(By.TagName("body")).Text;
         Assert.That(body.ToLowerInvariant(), Does.Contain("401").Or.Contains("unauthorized"));
         Test.Pass("Acceso no autorizado a la API correctamente bloqueado");
     }
@@ -48,7 +62,7 @@ public class ProductReadE2ETest : TestBase
     public void Read_Boundary_LargeLength()
     {
         Test.Info("Esperando carga de productos");
-        LoginHelper.WaitUntilElementVisible(_driver, By.CssSelector(".product-table"), TimeSpan.FromSeconds(5));
+        LoadProducts();
 
         Test.Info("Solicitando cantidad limite de productos");
         _driver.FindElement(By.Id("length")).Clear();
