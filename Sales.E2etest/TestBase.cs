@@ -15,6 +15,14 @@ public abstract class TestBase
     {
         Test = TestSetup.Extent.CreateTest(
             TestContext.CurrentContext.Test.Name);
+
+        foreach (var category in TestContext.CurrentContext.Test.Properties["Category"])
+        {
+            if (category != null)
+            {
+                Test.AssignCategory(category.ToString()!);
+            }
+        }
     }
 
     [TearDown]
@@ -25,10 +33,10 @@ public abstract class TestBase
         try
         {
             var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
-            var base64 = screenshot.AsBase64EncodedString;
             var path = SaveScreenshotToDisk(screenshot);
+            var relativePath = GetRelativeScreenshotPath(path);
 
-            Test.AddScreenCaptureFromBase64String(base64);
+            Test.AddScreenCaptureFromPath(relativePath);
 
             Console.WriteLine($"Screenshot saved: {path}");
         }
@@ -76,5 +84,11 @@ public abstract class TestBase
         screenshot.SaveAsFile(path);
 
         return path;
+    }
+
+    private string GetRelativeScreenshotPath(string absolutePath)
+    {
+        var fileName = Path.GetFileName(absolutePath);
+        return Path.Combine("Screenshots", fileName);
     }
 }
