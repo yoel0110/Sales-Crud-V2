@@ -3,6 +3,7 @@
     <Project Path="Sales.Api/Sales.Api.csproj" Id="edadfe67-eb3b-446b-9982-a4a760af9b64" />
     <Project Path="Sales.Application/Sales.Application.csproj" Id="25e730da-a800-4a92-8546-79babcdd2046" />
     <Project Path="Sales.Domain/Sales.Domain.csproj" />
+    <Project Path="Sales.E2etest/Sales.E2etest.csproj" Id="3ed3ba48-5584-40b0-8f2b-85ee2f827569" />
     <Project Path="Sales.Infrastructure/Sales.Infrastructure.csproj" Id="e74ada0f-6473-48a2-bebc-1a2815fea919" />
   </Folder>
   <Folder Name="/src/Sales.Web/" />

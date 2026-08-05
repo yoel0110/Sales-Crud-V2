@@ -4,9 +4,10 @@ interface ProductListProps {
   products: ProductDto[];
   onEdit: (product: ProductDto) => void;
   onDelete: (id: number) => void;
+  isProcessing?: boolean;
 }
 
-export const ProductList = ({ products, onEdit, onDelete }: ProductListProps) => {
+export const ProductList = ({ products, onEdit, onDelete, isProcessing = false }: ProductListProps) => {
   if (products.length === 0) {
     return <p className="empty">No se encontraron productos.</p>;
   }
@@ -37,6 +38,7 @@ export const ProductList = ({ products, onEdit, onDelete }: ProductListProps) =>
                   type="button"
                   className="btn-edit"
                   onClick={() => onEdit(product)}
+                  disabled={isProcessing}
                 >
                   Editar
                 </button>
@@ -44,6 +46,7 @@ export const ProductList = ({ products, onEdit, onDelete }: ProductListProps) =>
                   type="button"
                   className="btn-delete"
                   onClick={() => onDelete(product.productId)}
+                  disabled={isProcessing}
                 >
                   Eliminar
                 </button>

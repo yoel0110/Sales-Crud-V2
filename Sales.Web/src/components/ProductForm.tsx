@@ -1,21 +1,27 @@
-import { useState, useEffect } from 'react';
-import type { ProductDto, ProductFormData } from '../types';
-import { CATEGORIES } from '../data/categories';
+import { useState, useEffect } from "react";
+import type { ProductDto, ProductFormData } from "../types";
+import { CATEGORIES } from "../data/categories";
 
 interface ProductFormProps {
   product: ProductDto | null;
   onSave: (product: ProductFormData) => void;
   onCancel: () => void;
+  isProcessing?: boolean;
 }
 
-export const ProductForm = ({ product, onSave, onCancel }: ProductFormProps) => {
+export const ProductForm = ({
+  product,
+  onSave,
+  onCancel,
+  isProcessing = false,
+}: ProductFormProps) => {
   const [formData, setFormData] = useState<ProductFormData>({
     productId: 0,
-    productName: '',
+    productName: "",
     categoryId: 0,
-    categoryName: '',
-    price: 0,
-    stock: 0,
+    categoryName: "",
+    price: "",
+    stock: "",
   });
 
   useEffect(() => {
@@ -31,44 +37,56 @@ export const ProductForm = ({ product, onSave, onCancel }: ProductFormProps) => 
     } else {
       setFormData({
         productId: 0,
-        productName: '',
+        productName: "",
         categoryId: 0,
-        categoryName: '',
-        price: 0,
-        stock: 0,
+        categoryName: "",
+        price: "",
+        stock: "",
       });
     }
   }, [product]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        name === 'productName' || name === 'categoryName'
-          ? value
-          : Number(value),
-    }));
-  };
 
+    setFormData((prev) => {
+      if (name === "productName" || name === "categoryName") {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      }
+
+      return {
+        ...prev,
+        [name]: value === "" ? "" : Number(value),
+      };
+    });
+  };
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const categoryId = Number(e.target.value);
     const category = CATEGORIES.find((c) => c.id === categoryId);
     setFormData((prev) => ({
       ...prev,
       categoryId,
-      categoryName: category ? category.name : '',
+      categoryName: category ? category.name : "",
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave(formData);
+    onSave({
+      ...formData,
+      price: Number(formData.price),
+      stock: Number(formData.stock),
+    });
   };
 
   return (
     <form onSubmit={handleSubmit} className="product-form">
-      <h2>{product ? 'Editar Producto' : 'Nuevo Producto'}</h2>
+      <h2>{product ? "Editar Producto" : "Nuevo Producto"}</h2>
 
       <div className="form-group">
         <label htmlFor="productName">Nombre</label>
@@ -104,7 +122,7 @@ export const ProductForm = ({ product, onSave, onCancel }: ProductFormProps) => 
         <div className="form-group">
           <label htmlFor="price">Precio</label>
           <input
-            id="price"
+            id="nprice"
             name="price"
             type="number"
             step="0.01"
@@ -128,10 +146,10 @@ export const ProductForm = ({ product, onSave, onCancel }: ProductFormProps) => 
       </div>
 
       <div className="form-actions">
-        <button type="submit" className="btn-primary">
-          {product ? 'Actualizar' : 'Crear'}
+        <button type="submit" id="add" className="btn-primary" disabled={isProcessing}>
+          {isProcessing ? 'Guardando...' : (product ? "Actualizar" : "Crear")}
         </button>
-        <button type="button" className="btn-secondary" onClick={onCancel}>
+        <button type="button" className="btn-secondary" onClick={onCancel} disabled={isProcessing}>
           Cancelar
         </button>
       </div>

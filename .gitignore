@@ -428,3 +428,4 @@ FodyWeavers.xsd
 *.msm
 *.msp
 Sales.Api/appsettings.Development.json
+/Sales.Web/mochawesome-report

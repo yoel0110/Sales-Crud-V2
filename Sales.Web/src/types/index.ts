@@ -1,5 +1,5 @@
 export const Filter = {
-  BETWEN: 0,
+  BETWEEN: 0,
   LESS_THAN: 1,
   MORE_THAN: 2,
 } as const;
@@ -26,6 +26,12 @@ export interface ApiResponse<T> {
   data: T;
 }
 
+export interface ServiceResult<T> {
+  isSuccess: boolean;
+  message: string;
+  data: T;
+}
+
 export interface ProductFilters {
   filter: FilterValue;
   price: number;
@@ -40,6 +46,6 @@ export interface ProductFormData {
   productName: string;
   categoryId: number;
   categoryName: string;
-  price: number;
-  stock: number;
+  price: number | "";
+  stock: number | "";
 }
